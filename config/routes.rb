@@ -1,3 +1,6 @@
 School::Engine.routes.draw do
-  root "students#index"
+
+  resources :participants
+
+  root "participants#index"
 end

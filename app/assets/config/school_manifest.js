@@ -1,1 +1,2 @@
-//= link_directory ../stylesheets/school .css
+//= link_directory ../builds .css
+//= link_directory ../../javascript/school .js
