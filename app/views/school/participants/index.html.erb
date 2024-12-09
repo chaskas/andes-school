@@ -1,14 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<% unless notice.blank? %>
+  <div class="alert alert-success mt-3" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
 
-<h1>Participants</h1>
+<% content_for :title, "participants" %>
 
-<div id="participants">
-  <% @participants.each do |participant| %>
-    <%= render participant %>
-    <p>
-      <%= link_to "Show this participant", participant %>
-    </p>
-  <% end %>
+<div class="d-flex align-items-center ">
+  <h1>Participants</h1>
+  <%= button_to "", new_participant_path, method: :get, class: "btn btn-sm btn-primary bi bi-plus ms-3" %>
 </div>
 
-<%= link_to "New participant", new_participant_path %>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Options</th>
+  </tr>
+  </thead>
+  <tbody>
+
+    <% @participants.each do |participant| %>
+      <tr>
+        
+        <td><%= participant.name %></td>
+        <td><%= participant.email %></td>
+      
+        <td>
+          <div class="d-inline-flex">
+            <%= button_to "", edit_participant_path(participant), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
+            <%= button_to "", participant, method: :delete, class: "btn btn-sm btn-danger bi bi-trash" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
