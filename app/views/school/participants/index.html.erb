@@ -8,7 +8,7 @@
 
 <div class="d-flex align-items-center ">
   <h1>Participants</h1>
-  <%= button_to "", new_participant_path, method: :get, class: "btn btn-sm btn-primary bi bi-plus ms-3" %>
+  <%= button_to "", new_participant_path, method: :get, class: "btn btn-sm btn-primary bi bi-plus ms-2 fs-4" %>
 </div>
 
 <table class="table">
@@ -32,6 +32,7 @@
         <td>
           <div class="d-inline-flex">
             <%= button_to "", edit_participant_path(participant), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
+            <%= button_to "", participant_path(participant), method: :get, class: "btn btn-sm btn-warning bi bi-eye me-1" %>
             <%= button_to "", participant, method: :delete, class: "btn btn-sm btn-danger bi bi-trash" %>
           </div>
         </td>

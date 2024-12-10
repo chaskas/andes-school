@@ -1,8 +1,8 @@
 <% content_for :title, "New participant" %>
 
 <div class="d-flex align-items-center">
-  <h1>New participant</h1>
-  <%= link_to "Back", participants_path, class: "btn btn-sm btn-dark ms-auto" %>
+  <h1 class="me-auto">New participant</h1>
+  <%= button_to "Return", "javascript:history.back()", method: :get, class: "btn btn-dark bi bi-arrow-return-left ms-auto" %> <!-- ms-auto para alinear el botón a la derecha -->
 </div>
 
 <%= render "form", participant: @participant %>
