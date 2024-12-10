@@ -14,7 +14,7 @@
     <div class="d-flex justify-content-end mt-3">
       <%= button_to " Edit", edit_participant_path(@participant), method: :get, class: "btn btn-primary me-2 bi bi-pencil me-1" %>
       <%= button_to " Delete", @participant, method: :delete, class: "btn btn-danger bi bi-trash me-2" %>
-      <%= button_to " Return", "javascript:history.back()", method: :get, class: "btn btn-dark bi bi-arrow-return-left me-2" %>
+      <%= button_to " Return", participants_path, method: :get, class: "btn btn-dark bi bi-arrow-return-left me-2" %>
     </div>
   </div>
    
