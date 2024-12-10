@@ -54,7 +54,7 @@ module School
 
       # Only allow a list of trusted parameters through.
       def participant_params
-        params.require(:participant).permit(:name, :email)
+        params.require(:participant).permit(:name, :email, :birthday)
       end
   end
 end
