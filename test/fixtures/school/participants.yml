@@ -1,13 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+dead:
   id: 1
   name: Agustín Arturo Prat Chacón
   email: capitan.prat.48@gmail.com
   birthday: 1848-03-04
 
-two:
+old:
   id: 2
   name: Ana María Velázquez Jiménez
   email: anamaria.velazquez1905@gmail.com
   birthday: 1905-03-22
+
+young:
+  id: 3
+  name: Jose Velázquez Jiménez
+  email: jose@google.com
+  birthday: 1995-03-22
+
+baby:
+  id: 4
+  name: Jose Velázquez Jiménez
+  email:
+  birthday: 2020-03-22

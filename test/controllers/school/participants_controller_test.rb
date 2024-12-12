@@ -5,7 +5,7 @@ module School
     include Engine.routes.url_helpers
 
     setup do
-      @participant = school_participants(:one)
+      @participant = school_participants(:young)
     end
 
     test "should get index" do
@@ -20,10 +20,21 @@ module School
 
     test "should create participant" do
       assert_difference("Participant.count") do
-        post participants_url, params: { participant: { email: @participant.email, name: @participant.name } }
+        post participants_url, params: { participant: { email: @participant.email, name: @participant.name, birthday: @participant.birthday } }
       end
 
       assert_redirected_to participant_url(Participant.last)
+    end
+
+    test "should not create participant if is older than 150 years" do
+
+      @super_old_participant = school_participants(:dead)
+
+      assert_no_difference("Participant.count") do
+        post participants_url, params: { participant: { email: @super_old_participant.email, name: @super_old_participant.name, birthday: @super_old_participant.birthday } }
+      end
+
+      assert_response :unprocessable_entity
     end
 
     test "should show participant" do
@@ -37,8 +48,8 @@ module School
     end
 
     test "should update participant" do
-      patch participant_url(@participant), params: { participant: { email: @participant.email, name: @participant.name } }
-      assert_redirected_to participant_url(@participant)
+      patch participant_url(@participant), params: { participant: { email: @participant.email, name: @participant.name, birthday: @participant.birthday } }
+      assert_redirected_to @participant
     end
 
     test "should destroy participant" do
