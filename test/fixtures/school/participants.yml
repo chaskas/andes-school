@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  email: MyString
+  id: 1
+  name: Agustín Arturo Prat Chacón
+  email: capitan.prat.48@gmail.com
+  birthday: 1848-03-04
 
 two:
-  name: MyString
-  email: MyString
+  id: 2
+  name: Ana María Velázquez Jiménez
+  email: anamaria.velazquez1905@gmail.com
+  birthday: 1905-03-22
