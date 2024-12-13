@@ -45,3 +45,4 @@ PreCommit:
 PrePush:
   Minitest:
     enabled: true
+    flags: '--verbose'
