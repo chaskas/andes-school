@@ -1,0 +1,46 @@
+<% unless notice.blank? %>
+  <div class="alert alert-success mt-3" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<% content_for :title, "Facilitators" %>
+
+<div class="d-flex align-items-center ">
+  <h1>Facilitators</h1>
+  <%= button_to "", new_facilitator_path, method: :get, class: "btn btn-sm btn-primary bi bi-plus ms-2 fs-4" %>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Phone</th>
+    <th scope="col">Birthday</th>
+    <th scope="col">Address</th>
+  </tr>
+  </thead>
+  <tbody>
+
+    <% @facilitators.each do |facilitator| %>
+      <tr>
+        
+        <td><%= facilitator.name %></td>
+        <td><%= facilitator.email %></td>
+        <td><%= facilitator.phone %></td>
+        <td><% facilitator.birthday ? facilitator.birthday.strftime("%d/%m/%Y") : "Date no Available" %></td>
+        <td><%= facilitator.address %></td>
+
+        <td>
+          <div class="d-inline-flex">
+            <%= button_to "", edit_facilitator_path(facilitator), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
+            <%= button_to "", facilitator_path(facilitator), method: :get, class: "btn btn-sm btn-warning bi bi-eye me-1" %>
+            <%= button_to "", facilitator, method: :delete, class: "btn btn-sm btn-danger bi bi-trash" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

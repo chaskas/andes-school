@@ -1,0 +1,8 @@
+<h1 class="text-center mb-4">Editing facilitator</h1>
+
+<%= render "form", facilitator: @facilitator %>
+
+<div class="d-flex">
+ <%= button_to " Show", @facilitator, class: "btn btn-warning bi bi-eye me-1", method: :get %>
+  <%= button_to " Return", facilitators_path, class: "btn btn-dark bi bi-arrow-return-left me-1", method: :get %>
+</div>

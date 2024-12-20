@@ -1,4 +1,5 @@
 School::Engine.routes.draw do
+  resources :facilitators
 
   resources :participants
 

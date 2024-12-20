@@ -1,0 +1,9 @@
+<% content_for :title, "New facilitator" %>
+
+<div class="d-flex align-items-center">
+  <h1 class="me-auto">New Facilitator</h1>
+  <%= button_to " Return", facilitators_path, method: :get, class: "btn btn-dark bi bi-arrow-return-left ms-auto" %> <!-- ms-auto para alinear el botón a la derecha -->
+</div>
+
+<%= render "form", facilitator: @facilitator %>
+
