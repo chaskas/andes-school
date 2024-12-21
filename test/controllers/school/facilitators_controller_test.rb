@@ -37,7 +37,7 @@ module School
     end
 
     test "should update facilitator" do
-      patch facilitator_url(@facilitator), params: { facilitator: { address: @facilitator.address, email: @facilitator.email, name: @facilitator.name, phone: @facilitator.phone } }
+      patch facilitator_url(@facilitator), params: { facilitator: { address: @facilitator.address, email: @facilitator.email, name: @facilitator.name, phone: @facilitator.phone, birthday: @facilitator.birthday} }
       assert_redirected_to facilitator_url(@facilitator)
     end
 

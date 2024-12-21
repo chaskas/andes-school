@@ -54,7 +54,7 @@ module School
 
       # Only allow a list of trusted parameters through.
       def facilitator_params
-        params.require(:facilitator).permit(:name, :phone, :email, :address)
+        params.require(:facilitator).permit(:name, :phone, :email, :address, :birthday)
       end
   end
 end

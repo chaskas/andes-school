@@ -5,9 +5,11 @@ one:
   phone: MyString
   email: MyString
   address: MyString
+  birthday: 1999-03-22
 
 two:
   name: MyString
   phone: MyString
   email: MyString
   address: MyString
+  birthday: 1995-03-22
