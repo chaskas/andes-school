@@ -20,7 +20,7 @@ module School
 
     test "should create facilitator" do
       assert_difference("Facilitator.count") do
-        post facilitators_url, params: { facilitator: { address: @facilitator.address, email: @facilitator.email, name: @facilitator.name, phone: @facilitator.phone } }
+        post facilitators_url, params: { facilitator: { address: @facilitator.address, email: @facilitator.email, name: @facilitator.name, phone: @facilitator.phone, birthday: @facilitator.birthday } }
       end
 
       assert_redirected_to facilitator_url(Facilitator.last)

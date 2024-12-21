@@ -3,13 +3,13 @@
 one:
   name: MyString
   phone: MyString
-  email: MyString
+  email: one@email.com
   address: MyString
   birthday: 1999-03-22
 
 two:
   name: MyString
   phone: MyString
-  email: MyString
+  email: two@email.com
   address: MyString
   birthday: 1995-03-22
