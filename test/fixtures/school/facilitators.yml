@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  phone: MyString
+  phone: "+56932186725"
   email: one@email.com
   address: MyString
-  birthday: 1999-03-22
+  birthday: "1999-03-22"
 
 two:
   name: MyString
-  phone: MyString
+  phone: "+56932186725"
   email: two@email.com
   address: MyString
-  birthday: 1995-03-22
+  birthday: "1995-03-22"
