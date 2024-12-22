@@ -1,0 +1,20 @@
+<% unless notice.blank? %>
+  <div class="alert alert-success mt-3" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class="card mt-4">
+  <div class="card-body">
+    <h4 class="card-title text-sm display-4 fw-bold"><%= @group.name %></h4>
+
+    <p class="card-text"><strong>Description:</strong> <%= @group.description %> </p>
+    <p class="card-text"><strong>created_at :</strong> <%= @group.created_at %> </p>
+    <p class="card-text"><strong>updated_at :</strong> <%= @group.updated_at %> </p>
+
+    <div class="d-flex justify-content-end mt-3">
+      <%= button_to " Edit", edit_group_path(@group), method: :get, class: "btn btn-primary me-2 bi bi-pencil me-1" %>
+      <%= button_to " Delete", @group, method: :delete, class: "btn btn-danger bi bi-trash me-2" %>
+      <%= button_to " Return", groups_path, method: :get, class: "btn btn-dark bi bi-arrow-return-left me-2" %>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<% content_for :title, "New Group" %>
+
+<div class="d-flex align-items-center">
+  <h1 class="me-auto">New group</h1>
+  <%= button_to " Return", groups_path, method: :get, class: "btn btn-dark bi bi-arrow-return-left ms-auto" %>
+</div>
+
+<%= render "form", group: @group %>
