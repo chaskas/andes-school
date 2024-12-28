@@ -19,15 +19,15 @@ module School
     def edit; end
 
     # POST /groups
-    # def create
-    #   @group = Group.new(group_params)
+    def create
+      @group = Group.new(group_params)
 
-    #   if @group.save
-    #     redirect_to @group, notice: 'Group was successfully created.'
-    #   else
-    #     render :new, status: :unprocessable_entity
-    #   end
-    # end
+      if @group.save
+        redirect_to @group, notice: 'Group was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
 
     # PATCH/PUT /groups/1
     def update
