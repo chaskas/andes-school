@@ -25,4 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'importmap-rails'
   spec.add_dependency 'pg'
   spec.add_dependency 'rails', '>= 7.1.3.2'
+  spec.add_dependency 'dotenv'
+  spec.add_dependency 'launchdarkly-server-sdk', '8.8.2'
+
 end
