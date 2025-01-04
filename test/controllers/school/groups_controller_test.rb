@@ -6,6 +6,7 @@ module School
 
     setup do
       @group = school_groups(:one)
+      @group2 = Group.new(name: "Test Group", description: "This is a test group")
     end
 
     test "should get index" do
@@ -20,7 +21,7 @@ module School
 
     test "should create group" do
       assert_difference("Group.count") do
-        post groups_url, params: { group: { description: @group.description, name: @group.name } }
+        post groups_url, params: { group: { name: @group2.name, description: @group2.description } }
       end
 
       assert_redirected_to group_url(Group.last)
