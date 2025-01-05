@@ -3,6 +3,7 @@ PATH
   specs:
     school (0.1.0)
       cssbundling-rails (~> 1.4)
+      dotenv
       importmap-rails
       launchdarkly-server-sdk (= 8.8.2)
       pg
