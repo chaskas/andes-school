@@ -24,7 +24,7 @@ RemoveEmptyHelpersCheck: {}
 #RemoveTabCheck: { }
 RemoveTrailingWhitespaceCheck: {}
 RemoveUnusedMethodsInControllersCheck:
-  { except_methods: [School::GroupsController#index] }
+  except_methods: [School::GroupsController#index, School::GroupsController#add_participant, School::GroupsController#remove_participant]
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
 RemoveUnusedMethodsInModelsCheck: { except_methods: [] }
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
