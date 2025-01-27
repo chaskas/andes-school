@@ -54,16 +54,27 @@ module School
       assert_redirected_to groups_url
     end
 
-    test 'should add participant' do
+    test 'should add participant in the group' do
       assert_not @group.participants.include?(@participant)
-
       @participant.save
-
       post add_participant_group_url(@group), params: { participant_id: @participant.id }
 
       assert_redirected_to edit_group_path(@group)
       @group.reload
       assert_includes @group.participants, @participant
+    end
+
+    test 'should remove participant from the group' do
+      @participant.save
+      @group.participants << @participant
+
+      assert_includes @group.participants, @participant
+
+      delete remove_participant_group_url(@group), params: { participant_id: @participant.id }
+
+      assert_redirected_to edit_group_path(@group)
+      @group.reload
+      assert_not_includes @group.participants, @participant
     end
   end
 end
