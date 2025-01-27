@@ -28,7 +28,7 @@ module School
         post groups_url, params: { group: { name: @group2.name, description: @group2.description } }
       end
 
-      assert_redirected_to group_url(Group.last)
+      assert_redirected_to edit_group_path(Group.last)
     end
 
     test 'should show group' do
