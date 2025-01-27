@@ -17,8 +17,6 @@
     <th scope="col">Name</th>
     <th scope="col">Email</th>
     <th scope="col">Phone</th>
-    <th scope="col">Birthday</th>
-    <th scope="col">Address</th>
     <th scope="col">Options</th>
   </tr>
   </thead>
@@ -30,9 +28,6 @@
         <td><%= facilitator.name %></td>
         <td><%= facilitator.email %></td>
         <td><%= facilitator.phone %></td>
-        <td><% facilitator.birthday ? facilitator.birthday.strftime("%d/%m/%Y") : "Date no Available" %></td>
-        <td><%= facilitator.address %></td>
-
         <td>
           <div class="d-inline-flex">
             <%= button_to "", edit_facilitator_path(facilitator), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
