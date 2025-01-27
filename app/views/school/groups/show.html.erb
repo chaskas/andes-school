@@ -11,6 +11,12 @@
     <p class="card-text"><strong>Description:</strong> <%= @group.description %> </p>
     <p class="card-text"><strong>created_at :</strong> <%= @group.created_at %> </p>
     <p class="card-text"><strong>updated_at :</strong> <%= @group.updated_at %> </p>
+    <p class="card-text"><strong>Participants :</strong></p>
+      <ul>
+        <% @group.participants.each do |participant| %>
+          <li><%= participant.name %></li>
+        <% end %>
+      </ul>
 
     <div class="d-flex justify-content-end mt-3">
       <%= button_to " Edit", edit_group_path(@group), method: :get, class: "btn btn-primary me-2 bi bi-pencil me-1" %>

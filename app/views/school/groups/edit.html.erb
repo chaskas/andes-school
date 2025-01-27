@@ -8,8 +8,17 @@
 
 <%= render "form", group: @group %>
 
+<turbo-frame id="add_remove_participant">
+  <div class="row mb-3 justify-content-md-left mt-2">
+    <div class="col">
+      <%= form_with(url: add_participant_group_path(@group), method: :post, local: false) do |f| %>
+        <%= f.label :participant_id, "Add Participant", class: "col-form-label fw-bold" %>
+        <%= f.select :participant_id, @participants.map { |participant| [participant.name, participant.id] }, {}, class: "form-select" %>
+        <%= f.submit "Add Participant", class: "btn btn-primary mt-3" %>
+      <% end %>
+    </div>
+  </div>
 
-<div id="list_participants" class="my-5">
-  <h2>Participants</h2>
-  <%= render "school/groups/list_participants", participants: @participants %>
-</div>
+  <%= render "participants", participants: @group.participants, group: @group %>
+</turbo-frame>
+

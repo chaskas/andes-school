@@ -1,6 +1,6 @@
 module School
   class GroupsController < ApplicationController
-    before_action :set_group, only: %i[show edit update destroy]
+    before_action :set_group, only: %i[show edit update destroy add_participant remove_participant]
 
     # GET /groups
     def index
@@ -16,14 +16,17 @@ module School
     end
 
     # GET /groups/1/edit
-    def edit; end
+    def edit
+      @group = Group.find(params[:id])
+      @participants = Participant.order(:name)
+    end
 
     # POST /groups
     def create
       @group = Group.new(group_params)
 
       if @group.save
-        redirect_to @group, notice: 'Group was successfully created.'
+        redirect_to edit_group_path(@group), notice: 'Group was successfully created.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -34,6 +37,7 @@ module School
       if @group.update(group_params)
         redirect_to @group, notice: 'Group was successfully updated.', status: :see_other
       else
+        @participants = Participant.order(:name)
         render :edit, status: :unprocessable_entity
       end
     end
@@ -42,6 +46,28 @@ module School
     def destroy
       @group.destroy!
       redirect_to groups_url, notice: 'Group was successfully destroyed.', status: :see_other
+    end
+
+    def add_participant
+      @group = Group.find(params[:id])
+      participant = Participant.find(params[:participant_id])
+
+      @group.participants << participant unless @group.participants.include?(participant)
+
+      redirect_to edit_group_path(@group)
+    end
+
+    def remove_participant
+      @group = Group.find(params[:id])
+      participant = Participant.find_by(id: params[:participant_id])
+
+      if participant.nil?
+        redirect_to edit_group_path(@group)
+      elsif @group.participants.delete(participant)
+        redirect_to edit_group_path(@group)
+      else
+        redirect_to edit_group_path(@group)
+      end
     end
 
     private
@@ -55,5 +81,6 @@ module School
     def group_params
       params.require(:group).permit(:name, :description)
     end
+
   end
 end
