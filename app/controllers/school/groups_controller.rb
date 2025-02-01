@@ -49,7 +49,6 @@ module School
     end
 
     def add_participant
-      @group = Group.find(params[:id])
       participant = Participant.find(params[:participant_id])
 
       @group.participants << participant unless @group.participants.include?(participant)
@@ -58,7 +57,6 @@ module School
     end
 
     def remove_participant
-      @group = Group.find(params[:id])
       participant = Participant.find_by(id: params[:participant_id])
 
       if participant.nil?
