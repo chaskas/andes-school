@@ -17,7 +17,6 @@ module School
 
     # GET /groups/1/edit
     def edit
-      @group = Group.find(params[:id])
       @participants = Participant.order(:name)
     end
 
