@@ -1,0 +1,41 @@
+<h1>Session Details</h1>
+
+<%= link_to 'New Session Detail', new_session_detail_path, class: 'btn btn-primary mb-3' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Targetable</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @session_details.each do |detail| %>
+      <tr>
+        <td><%= detail.title %></td>
+        <td><%= truncate(detail.description, length: 50) %></td>
+        <td>
+          <% if detail.targetable.present? %>
+            <% case detail.targetable_type %>
+              <% when 'School::Participant' %>
+                Participant: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %>)
+              <% when 'School::Group' %>
+                Group: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %>)
+              <% else %>
+                Unknown Targetable Type
+            <% end %>
+          <% else %>
+            None
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', session_detail_path(detail), class: 'btn btn-info btn-sm' %> |
+          <%= link_to 'Edit', edit_session_detail_path(detail), class: 'btn btn-warning btn-sm' %> |
+          <%= link_to 'Delete', session_detail_path(detail), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,88 @@
+<%= form_with(model: session_detail, local: true) do |form| %>
+  <% if @session_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session_detail.errors.count, "error") %> prohibited this session detail from being saved:</h2>
+      <ul>
+        <% @session_detail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :targetable_type, "Targetable Type" %>
+    <%= form.select :targetable_type, options_for_select([['None', nil], ['Participant', 'School::Participant'], ['Group', 'School::Group']], @session_detail.targetable_type), { include_blank: false }, id: 'targetable-type-select', class: 'form-control' %>
+  </div>
+
+  <div class="field" id="targetable-id-field" style="display: none;">
+    <%= form.label :targetable_id, "Targetable ID" %>
+    <select id="targetable-id-select" name="school_session_detail[targetable_id]" class: 'form-control'>
+      <option value="">Select an ID</option>
+    </select>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary mt-3' %>
+  </div>
+<% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const targetableTypeSelect = document.getElementById('targetable-type-select');
+    const targetableIdField = document.getElementById('targetable-id-field');
+    const targetableIdSelect = document.getElementById('targetable-id-select');
+
+    // Preload data for participants and groups
+    const participants = <%= raw @participants.map { |p| [p.id, p.name] }.to_json %>;
+    const groups = <%= raw @groups.map { |g| [g.id, g.name] }.to_json %>;
+
+    // Function to populate the targetable ID dropdown
+    function populateTargetableIds(type) {
+      targetableIdSelect.innerHTML = '<option value="">Select an ID</option>';
+      if (type === 'School::Participant') {
+        participants.forEach(([id, name]) => {
+          const option = document.createElement('option');
+          option.value = id;
+          option.textContent = `${name} (ID: ${id})`;
+          targetableIdSelect.appendChild(option);
+        });
+      } else if (type === 'School::Group') {
+        groups.forEach(([id, name]) => {
+          const option = document.createElement('option');
+          option.value = id;
+          option.textContent = `${name} (ID: ${id})`;
+          targetableIdSelect.appendChild(option);
+        });
+      }
+    }
+
+    // Show/hide and populate the targetable ID field based on the selected type
+    targetableTypeSelect.addEventListener('change', function () {
+      const selectedType = targetableTypeSelect.value;
+      if (selectedType) {
+        targetableIdField.style.display = 'block';
+        populateTargetableIds(selectedType);
+      } else {
+        targetableIdField.style.display = 'none';
+        targetableIdSelect.innerHTML = '<option value="">Select an ID</option>';
+      }
+    });
+
+    // Initialize the targetable ID field if a type is already selected
+    if (targetableTypeSelect.value) {
+      targetableIdField.style.display = 'block';
+      populateTargetableIds(targetableTypeSelect.value);
+    }
+  });
+</script>

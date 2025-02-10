@@ -1,0 +1,10 @@
+<h1><%= @session_detail.title %></h1>
+
+<p><strong>Description:</strong> <%= @session_detail.description %></p>
+
+<% if @session_detail.targetable %>
+  <p><strong>Targetable:</strong> <%= @session_detail.targetable_type %> (ID: <%= @session_detail.targetable_id %>)</p>
+<% end %>
+
+<%= link_to 'Edit', edit_session_detail_path(@session_detail) %> |
+<%= link_to 'Back', session_details_path %>
