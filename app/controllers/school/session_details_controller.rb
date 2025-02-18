@@ -2,9 +2,9 @@ module School
   class SessionDetailsController < ApplicationController
     before_action :set_session_detail, only: %i[show edit update destroy]
 
-    # def index
-    #   @session_details = SessionDetail.all
-    # end
+    def index
+      @session_details = SessionDetail.all
+    end
 
     def show; end
 
@@ -14,14 +14,14 @@ module School
       @groups = School::Group.all
     end
 
-    # def create
-    #   @session_detail = SessionDetail.new(session_detail_params)
-    #   if @session_detail.save
-    #     redirect_to session_detail_path(@session_detail), notice: 'Session detail was successfully created.'
-    #   else
-    #     render :new, status: :unprocessable_entity
-    #   end
-    # end
+    def create
+      @session_detail = SessionDetail.new(session_detail_params)
+      if @session_detail.save
+        redirect_to session_detail_path(@session_detail), notice: 'Session detail was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
 
     def edit
       @session_detail = School::SessionDetail.find(params[:id])
