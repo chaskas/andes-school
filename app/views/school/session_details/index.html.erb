@@ -31,9 +31,11 @@
           <% end %>
         </td>
         <td>
-          <%= link_to 'Show', session_detail_path(detail), class: 'btn btn-info btn-sm' %> |
-          <%= link_to 'Edit', edit_session_detail_path(detail), class: 'btn btn-warning btn-sm' %> |
-          <%= link_to 'Delete', session_detail_path(detail), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <div class="d-inline-flex">
+            <%= link_to "", session_detail_path(detail), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
+            <%= link_to "", edit_session_detail_path(detail), method: :get, class: "btn btn-sm btn-warning bi bi-eye me-1" %>
+            <%= button_to "", detail, method: :delete, class: "btn btn-sm btn-danger bi bi-trash" %>
+          </div>
         </td>
       </tr>
     <% end %>

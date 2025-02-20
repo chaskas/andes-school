@@ -1,6 +1,7 @@
 module School
   class SessionDetailsController < ApplicationController
     before_action :set_session_detail, only: %i[show edit update destroy]
+    before_action :load_related_data, only: %i[new create edit update]
 
     def index
       @session_details = SessionDetail.all
@@ -10,8 +11,6 @@ module School
 
     def new
       @session_detail = SessionDetail.new
-      @participants = School::Participant.all
-      @groups = School::Group.all
     end
 
     def create
@@ -23,10 +22,7 @@ module School
       end
     end
 
-    def edit
-      @session_detail = School::SessionDetail.find(params[:id])
-      @participants = School::Participant.all
-      @groups = School::Group.all
+    def edit;
     end
 
     def update
@@ -48,8 +44,14 @@ module School
       @session_detail = SessionDetail.find(params[:id])
     end
 
+    def load_related_data
+      @participants = School::Participant.all
+      @groups = School::Group.all
+    end
+
     def session_detail_params
       params.require(:session_detail).permit(:title, :description, :targetable_id, :targetable_type)
     end
+
   end
 end
