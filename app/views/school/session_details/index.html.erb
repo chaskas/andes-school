@@ -1,14 +1,23 @@
-<h1>Session Details</h1>
+<% unless notice.blank? %>
+  <div class="alert alert-success mt-3" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
 
-<%= link_to 'New Session Detail', new_session_detail_path, class: 'btn btn-primary mb-3' %>
+<% content_for :title, "Session Details" %>
+
+<div class="d-flex align-items-center">
+  <h1>Session Details</h1>
+  <%= button_to "", new_session_detail_path, method: :get, class: "btn btn-sm btn-primary bi bi-plus ms-2 fs-4" %>
+</div>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Targetable</th>
-      <th>Actions</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Targetable</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -32,8 +41,8 @@
         </td>
         <td>
           <div class="d-inline-flex">
-            <%= link_to "", session_detail_path(detail), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
-            <%= link_to "", edit_session_detail_path(detail), method: :get, class: "btn btn-sm btn-warning bi bi-eye me-1" %>
+            <%= button_to "", edit_session_detail_path(detail), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
+            <%= button_to "", session_detail_path(detail), method: :get, class: "btn btn-sm btn-warning bi bi-eye me-1" %>
             <%= button_to "", detail, method: :delete, class: "btn btn-sm btn-danger bi bi-trash" %>
           </div>
         </td>
