@@ -1,0 +1,8 @@
+<% content_for :title, "New Session Detail" %>
+
+<div class="d-flex align-items-center">
+  <h1 class="me-auto">New Session Detail</h1>
+  <%= link_to 'Back', session_details_path, class: "btn btn-dark bi bi-arrow-return-left ms-auto" %>
+</div>
+
+<%= render 'form', session_detail: @session_detail %>

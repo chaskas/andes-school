@@ -1,0 +1,31 @@
+<%= form_with(model: session_detail, local: true) do |form| %>
+  <% if @session_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session_detail.errors.count, "error") %> prohibited this session detail from being saved:</h2>
+      <ul>
+        <% @session_detail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :targetable_type, "Targetable Type" %>
+    <%= form.select :targetable_type, options_for_select([['Individual', 'School::Participant'], ['Group', 'School::Group']], nil), { include_blank: true }, id: 'targetable-type-select', class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary mt-3' %>
+  </div>
+<% end %>

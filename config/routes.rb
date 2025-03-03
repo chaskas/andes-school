@@ -4,8 +4,7 @@ School::Engine.routes.draw do
     delete :remove_participant, on: :member
   end
   resources :facilitators
-
   resources :participants
-
+  resources :session_details
   root "participants#index"
 end
