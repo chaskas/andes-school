@@ -26,5 +26,8 @@ group :test do
   gem 'simplecov', require: false
 end
 
-gem 'dotenv', groups: %i[development test], require: 'dotenv/load'
+# gem 'dotenv', groups: %i[development test], require: 'dotenv/load'
 gem 'launchdarkly-server-sdk', '8.8.2'
+gem 'dotenv-rails', require: 'dotenv/load'
+
+gem 'turbo-rails'

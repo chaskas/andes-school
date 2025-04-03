@@ -1,7 +1,7 @@
 <% unless notice.blank? %>
-  <div class="alert alert-success mt-3" role="alert">
-    <%= notice %>
-  </div>
+<div class="alert alert-success mt-3" role="alert">
+  <%= notice %>
+</div>
 <% end %>
 
 <% content_for :title, "Session Details" %>
@@ -22,31 +22,33 @@
   </thead>
   <tbody>
     <% @session_details.each do |detail| %>
-      <tr>
-        <td><%= detail.title %></td>
-        <td><%= truncate(detail.description, length: 50) %></td>
-        <td>
-          <% if detail.targetable.present? %>
-            <% case detail.targetable_type %>
-              <% when 'School::Participant' %>
-                Participant: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %>)
-              <% when 'School::Group' %>
-                Group: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %>)
-              <% else %>
-                Unknown Targetable Type
-            <% end %>
-          <% else %>
-            None
+    <tr>
+      <td><%= detail.title %></td>
+      <td><%= truncate(detail.description, length: 50) %></td>
+      <td>
+        <% if detail.targetable.present? %>
+          <% case detail.targetable_type %>
+            <% when 'School::Participant' %>
+              Participant: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %> <%= detail.targetable.name %>)
+            <% when 'School::Group' %>
+              Group: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %> <%= detail.targetable.name %>)
+            <% else %>
+              Unknown Targetable Type
           <% end %>
-        </td>
-        <td>
-          <div class="d-inline-flex">
-            <%= button_to "", edit_session_detail_path(detail), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
-            <%= button_to "", session_detail_path(detail), method: :get, class: "btn btn-sm btn-warning bi bi-eye me-1" %>
-            <%= button_to "", detail, method: :delete, class: "btn btn-sm btn-danger bi bi-trash" %>
-          </div>
-        </td>
-      </tr>
+        <% elsif detail.targetable_type.present? %>
+          <%= detail.targetable_type.demodulize %>: Not linked
+        <% else %>
+          None
+        <% end %>
+      </td>
+      <td>
+        <div class="d-inline-flex">
+          <%= button_to "", edit_session_detail_path(detail), method: :get, class: "btn btn-sm btn-success bi bi-pencil me-1" %>
+          <%= button_to "", session_detail_path(detail), method: :get, class: "btn btn-sm btn-warning bi bi-eye me-1" %>
+          <%= button_to "", detail, method: :delete, class: "btn btn-sm btn-danger bi bi-trash" %>
+        </div>
+      </td>
+    </tr>
     <% end %>
   </tbody>
 </table>

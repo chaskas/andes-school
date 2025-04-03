@@ -11,34 +11,39 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, class: "form-label fw-bold" %>
     <%= form.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, class: "form-label fw-bold" %>
     <%= form.text_area :description, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :targetable_type, "Targetable Type" %>
-    <%= form.select :targetable_type, options_for_select([['Individual', 'School::Participant'], ['Group', 'School::Group']], nil), { include_blank: true }, id: 'targetable-type-select', class: 'form-control' %>
+    <%= form.label :targetable_type, class: "form-label fw-bold" %>
+    <%= form.select :targetable_type, options_for_select([['Individual', 'School::Participant'], ['Group', 'School::Group']], @session_detail.targetable_type), { include_blank: false }, id: 'targetable-type-select', class: 'form-control', disabled: @session_detail.persisted? %>
   </div>
 
-  <div class="row mb-3 justify-content-md-left">
-    <div class="col">
-      <%= form.label :targetable_id, "Participant", class: "form-label fw-bold" %>
-      <%= form.select :targetable_id, options_for_select(@participants.map { |participant| [participant.name, participant.id] }, nil), { include_blank: true }, class: "form-select" %>
+  <% if @session_detail.targetable_type == 'School::Participant' || @session_detail.targetable_type.nil? %>
+    <div class="row mb-3 justify-content-md-left">
+      <div class="col">
+        <%= form.label :targetable_id, "Participante", class: "form-label fw-bold" %>
+        <%= form.select :targetable_id, options_for_select(@participants.map { |participant| [participant.name, participant.id] }, @session_detail.targetable_id), { include_blank: true }, class: "form-select" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
-  <div class="row mb-3 justify-content-md-left">
-    <div class="col">
-      <%= form.label :targetable_id, "Group", class: "form-label fw-bold" %>
-      <%= form.select :targetable_id, options_for_select(@groups.map { |group| [group.name, group.id] }, nil), { include_blank: true }, class: "form-select" %>
+  <% if @session_detail.targetable_type == 'School::Group' %>
+    <div class="row mb-3 justify-content-md-left">
+      <div class="col">
+        <%= form.label :targetable_id, "Group", class: "form-label fw-bold" %>
+        <%= form.select :targetable_id, options_for_select(@groups.map { |group| [group.name, group.id] }, @session_detail.targetable_id), { include_blank: true }, class: "form-select" %>
+      </div>
     </div>
-  </div>
+  <% end %>
+
   <div class="actions">
-    <%= form.submit class: 'btn btn-primary mt-3' %>
+    <%= form.submit "Submit", class: 'btn btn-success mt-3 mb-3' %>
   </div>
 <% end %>

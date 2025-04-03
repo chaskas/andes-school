@@ -2,6 +2,10 @@ module School
   class Engine < ::Rails::Engine
     isolate_namespace School
 
+    initializer "dotenv.load" do
+      Dotenv.load(root.join(".env"))
+    end
+
     initializer "school.assets" do |app|
       app.config.assets.paths << root.join("app/javascript")
       app.config.assets.precompile += %w[ school_manifest ]

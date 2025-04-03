@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 module School
   class GroupsController < ApplicationController
+    before_action :check_feature_flag,
+                  only: %i[index show new create edit update destroy destroy add_participant remove_participant]
     before_action :set_group, only: %i[show edit update destroy add_participant remove_participant]
 
     # GET /groups
@@ -57,27 +61,37 @@ module School
 
     def remove_participant
       participant = Participant.find_by(id: params[:participant_id])
-
-      if participant.nil?
-        redirect_to edit_group_path(@group)
-      elsif @group.participants.delete(participant)
-        redirect_to edit_group_path(@group)
-      else
-        redirect_to edit_group_path(@group)
-      end
+                   @group.participants.delete(participant)
+      redirect_to edit_group_path(@group)
     end
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def group_params
       params.require(:group).permit(:name, :description)
     end
 
+    def check_feature_flag
+      context_attributes = {
+        key: 'banana',
+        kind: 'user',
+        name: 'Banana User',
+        email: 'banana@example.com',
+        role: 'admin',
+        country: 'US',
+        is_premium: true
+      }
+
+      show_feature = FeatureFlagService.check_feature_flag('groups-feature', context_attributes, false)
+
+      return if show_feature
+
+      redirect_to root_path, notice: 'This feature is Off.'
+
+    end
   end
 end
