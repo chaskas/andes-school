@@ -21,7 +21,7 @@ module School
 
     # GET /groups/1/edit
     def edit
-      @participants = Participant.order(:name)
+      @participants = Participant.where.not(id: School::Participant.joins(:groups).select(:id).distinct).order(:name)
     end
 
     # POST /groups
@@ -40,7 +40,7 @@ module School
       if @group.update(group_params)
         redirect_to @group, notice: 'Group was successfully updated.', status: :see_other
       else
-        @participants = Participant.order(:name)
+        @participants = Participant.where.not(id: School::Participant.joins(:groups).select(:id).distinct).order(:name)
         render :edit, status: :unprocessable_entity
       end
     end
