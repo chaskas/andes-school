@@ -17,7 +17,7 @@
         <tr>
           <td class="text-center"><%= participant.name %></td>
           <td class="text-center"><%= participant.email %></td>
-          <td class="text-center"><%= participant.birthday %></td>
+          <td class="text-center"><%= participant.birthday.present? ? participant.birthday.strftime('%d.%m.%Y') : '' %></td>
           <td class="text-center">
             <div class="d-inline-flex">
               <%= button_to remove_participant_group_path(group_id: group.id, participant_id: participant.id),
