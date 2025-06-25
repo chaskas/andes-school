@@ -1,7 +1,7 @@
 <%= form_with(model: participant) do |form| %>
   <% if participant.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(participant.errors.count, "error") %> prohibited this participant from being saved:</h2>
+      <h4><%= pluralize(participant.errors.count, "error") %> prohibited this participant from being saved:</h4>
 
       <ul>
         <% participant.errors.each do |error| %>
@@ -11,20 +11,26 @@
     </div>
   <% end %>
 
-  <div class="row mb-3 justify-content-md-left">
+  <div class="mb-3 justify-content-md-left">
     <div class="row">
-      <%= form.label :name, class: "col-form-label fw-bold" %>
-      <%= form.text_field :name, class: "form-control" %>
+      <div class="col">
+        <%= form.label :name, class: "col-form-label fw-bold" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
     </div>
   
     <div class="row">
-      <%= form.label :email, class: "col-form-label fw-bold" %>
-      <%= form.text_field :email, class: "form-control" %>
+      <div class="col">
+        <%= form.label :email, class: "col-form-label fw-bold" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
     </div>
 
     <div class="row">
-      <%= form.label :birthday, class: "col-form-label fw-bold" %>
-      <%= form.date_field :birthday, class: "form-control" %>
+      <div class="col">
+        <%= form.label :birthday, class: "col-form-label fw-bold" %>
+        <%= form.date_field :birthday, class: "form-control" %>
+      </div>
     </div>
   </div>
 
