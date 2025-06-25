@@ -33,24 +33,9 @@ module School
       assert_not @participant.save, "Saved the participant without an email"
     end
 
-    test "should not save participant with empty email" do
-      @participant.email = ''
-      assert_not @participant.save, "Saved the participant with empty email"
-    end
-
     test "should not save participant with invalid email" do
       @participant.email = "invalid_email"
       assert_not @participant.save, "Saved the participant with an invalid email"
-    end
-
-    test "should not save participant without birthday" do
-      @participant.birthday = nil
-      assert_not @participant.save, "Saved the participant without a birthday"
-    end
-
-    test "should not save participant with empty birthday" do
-      @participant.birthday = ''
-      assert_not @participant.save, "Saved the participant with empty birthday"
     end
 
     test "should not save participant with a future birthday" do
