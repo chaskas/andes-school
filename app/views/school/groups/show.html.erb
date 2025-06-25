@@ -3,8 +3,6 @@
     <h4 class="card-title text-sm display-4 fw-bold"><%= @group.name %></h4>
 
     <p class="card-text"><strong>Description:</strong> <%= @group.description %> </p>
-    <p class="card-text"><strong>created_at :</strong> <%= @group.created_at %> </p>
-    <p class="card-text"><strong>updated_at :</strong> <%= @group.updated_at %> </p>
     <p class="card-text"><strong>Participants :</strong></p>
       <ul>
         <% @group.participants.each do |participant| %>
