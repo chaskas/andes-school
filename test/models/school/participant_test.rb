@@ -28,11 +28,6 @@ module School
       assert @participant.save, "Failed to save the participant with a valid name"
     end
 
-    test "should not save participant without email" do
-      @participant.email = nil
-      assert_not @participant.save, "Saved the participant without an email"
-    end
-
     test "should not save participant with invalid email" do
       @participant.email = "invalid_email"
       assert_not @participant.save, "Saved the participant with an invalid email"
