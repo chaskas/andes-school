@@ -44,17 +44,5 @@ module School
       assert_equal 'text/vnd.turbo-stream.html', @response.media_type
     end
 
-    test "session detail show page displays session records" do
-      # Create a session record
-      @session_detail.session_records.create!(
-        start_time: Time.current,
-        duration: 75
-      )
-
-      get session_detail_path(@session_detail)
-      assert_response :success
-
-      assert_select ".card-header", text: /Session Records/
-    end
   end
 end

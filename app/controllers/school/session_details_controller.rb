@@ -1,14 +1,11 @@
 module School
   class SessionDetailsController < ApplicationController
     before_action :check_feature_flag
-    before_action :set_session_detail, only: %i[show edit update destroy]
+    before_action :set_session_detail, only: %i[edit update destroy]
     before_action :load_related_data, only: %i[new create edit update]
 
     def index
       @session_details = SessionDetail.all
-    end
-
-    def show
     end
 
     def new
