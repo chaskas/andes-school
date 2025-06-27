@@ -1,0 +1,14 @@
+one:
+  id: 1
+  title: "Test Session Detail"
+  description: "A test session detail for testing"
+  targetable_type: "School::Group"
+  targetable_id: 1
+
+two:
+  id: 2
+  title: "Another Session Detail"
+  description: "Another test session detail"
+  targetable_type: "School::Participant"
+  targetable_id: 1
+

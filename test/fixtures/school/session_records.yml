@@ -1,0 +1,9 @@
+one:
+  session_detail_id: 1
+  start_time: <%= Time.current %>
+  duration: 60
+
+two:
+  session_detail_id: 1
+  start_time: <%= 1.day.from_now %>
+  duration: 90
