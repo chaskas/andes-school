@@ -1,7 +1,14 @@
-<%= turbo_stream.prepend "session_records_list" do %>
-  <%= render partial: "school/session_records/session_record", locals: { session_record: @session_record } %>
+<%# This updates the session record list %>
+<%= turbo_stream.update "session_records_list" do %>
+  <% valid_records = @session_detail.session_records.reject { |r| r.start_time.nil? && r.duration.nil? } %>
+  <% if valid_records.any? %>
+    <%= render partial: "school/session_records/session_record", collection: valid_records %>
+  <% else %>
+    <div class="alert">No session records yet. Add the first one above.</div>
+  <% end %>
 <% end %>
 
-<%= turbo_stream.replace "new_session_record" do %>
+<%# This resets the form %>
+<%= turbo_stream.update "new_session_record" do %>
   <%= render partial: "school/session_records/form", locals: { session_record: @session_detail.session_records.new } %>
 <% end %>

@@ -1,2 +1,10 @@
+<%# Remove the specific session record %>
 <%= turbo_stream.remove dom_id(@session_record) %>
 
+<%# Update the session records list if needed %>
+<% valid_records = @session_detail.session_records.reject { |r| r.start_time.nil? && r.duration.nil? } %>
+<% if valid_records.empty? %>
+  <%= turbo_stream.update "session_records_list" do %>
+    <div class="alert">No session records yet. Add the first one above.</div>
+  <% end %>
+<% end %>

@@ -51,12 +51,12 @@
 
 <div class="mt-4">
     <h4>Sessions</h4>
-    <div id="session_records_list">
+    <%= turbo_frame_tag "session_records_list" do %>
       <% valid_records = @session_detail.session_records.reject { |r| r.start_time.nil? && r.duration.nil? } %>
       <% if valid_records.any? %>
         <%= render partial: "school/session_records/session_record", collection: valid_records %>
       <% else %>
         <div class="alert">No session records yet. Add the first one above.</div>
       <% end %>
-    </div>
+    <% end %>
 </div>
