@@ -2,6 +2,8 @@ module School
   class SessionDetail < ApplicationRecord
     self.table_name = 'school_session_details'
     belongs_to :targetable, polymorphic: true, optional: true
+    has_many :session_records, dependent: :destroy
+
     validates :targetable_type, presence: true
     validates :title, presence: true, length: { minimum: 2, maximum: 60 }
     validates :description, length: { maximum: 1000 }, allow_nil: true

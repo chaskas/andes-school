@@ -29,7 +29,7 @@ module School
 
     def update
       if @session_detail.update(session_detail_params)
-        redirect_to session_detail_path(@session_detail), notice: 'Session detail was successfully updated.'
+        redirect_to edit_session_detail_path(@session_detail), notice: 'Session detail was successfully updated.'
       else
         render :edit, status: :unprocessable_entity
       end

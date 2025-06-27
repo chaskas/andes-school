@@ -20,11 +20,6 @@
     <%= form.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :targetable_type, class: "form-label fw-bold" %>
-    <%= form.select :targetable_type, options_for_select([['Individual', 'School::Participant'], ['Group', 'School::Group']], @session_detail.targetable_type), { include_blank: false }, id: 'targetable-type-select', class: 'form-control', disabled: @session_detail.persisted? %>
-  </div>
-
   <% if @session_detail.targetable_type == 'School::Participant' || @session_detail.targetable_type.nil? %>
     <div class="row mb-3 justify-content-md-left">
       <div class="col">
@@ -43,7 +38,25 @@
     </div>
   <% end %>
 
-  <div class="actions">
+  <div class="actions mb-4">
     <%= form.submit "Submit", class: 'btn btn-success mt-3 mb-3' %>
   </div>
 <% end %>
+
+<div class="mb-4">
+    <%= turbo_frame_tag "new_session_record" do %>
+      <%= render partial: "school/session_records/form", locals: { session_record: @session_detail.session_records.new } %>
+    <% end %>
+</div>
+
+<div class="mt-4">
+    <h4>Sessions</h4>
+    <div id="session_records_list">
+      <% valid_records = @session_detail.session_records.reject { |r| r.start_time.nil? && r.duration.nil? } %>
+      <% if valid_records.any? %>
+        <%= render partial: "school/session_records/session_record", collection: valid_records %>
+      <% else %>
+        <div class="alert">No session records yet. Add the first one above.</div>
+      <% end %>
+    </div>
+</div>

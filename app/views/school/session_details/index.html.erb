@@ -1,7 +1,7 @@
 <% content_for :title, "Session Details" %>
 
 <div class="d-flex align-items-center">
-  <h1>Session Details</h1>
+  <h1>Classes</h1>
   <%= button_to "", new_session_detail_path, method: :get, class: "btn btn-sm btn-primary bi bi-plus ms-2 fs-4" %>
 </div>
 
@@ -9,8 +9,7 @@
   <thead>
     <tr>
       <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Targetable</th>
+      <th scope="col">Who?</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -18,14 +17,13 @@
     <% @session_details.each do |detail| %>
     <tr>
       <td><%= detail.title %></td>
-      <td><%= truncate(detail.description, length: 50) %></td>
       <td>
         <% if detail.targetable.present? %>
           <% case detail.targetable_type %>
             <% when 'School::Participant' %>
-              Participant: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %> <%= detail.targetable.name %>)
+              Participant: <%= detail.targetable.name %>
             <% when 'School::Group' %>
-              Group: <%= detail.targetable.name %> (ID: <%= detail.targetable.id %> <%= detail.targetable.name %>)
+              Group: <%= detail.targetable.name %>
             <% else %>
               Unknown Targetable Type
           <% end %>

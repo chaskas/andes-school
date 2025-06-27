@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend "session_records_list" do %>
+  <%= render partial: "school/session_records/session_record", locals: { session_record: @session_record } %>
+<% end %>
+
+<%= turbo_stream.replace "new_session_record" do %>
+  <%= render partial: "school/session_records/form", locals: { session_record: @session_detail.session_records.new } %>
+<% end %>

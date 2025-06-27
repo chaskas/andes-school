@@ -5,6 +5,8 @@ School::Engine.routes.draw do
   end
   resources :facilitators
   resources :participants
-  resources :session_details
+  resources :session_details do
+    resources :session_records, only: [:create, :destroy]
+  end
   root "participants#index"
 end
