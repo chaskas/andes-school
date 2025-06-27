@@ -8,7 +8,8 @@ module School
       @session_details = SessionDetail.all
     end
 
-    def show; end
+    def show
+    end
 
     def new
       @session_detail = SessionDetail.new
@@ -23,7 +24,7 @@ module School
       end
     end
 
-    def edit;
+    def edit
     end
 
     def update
