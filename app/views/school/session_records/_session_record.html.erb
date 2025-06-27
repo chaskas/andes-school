@@ -16,7 +16,7 @@
           <%= button_to session_detail_session_record_path(session_record.session_detail, session_record),
                       method: :delete,
                       class: "btn btn-sm btn-danger bi bi-trash",
-                      form: { data: { turbo_confirm: "Are you sure you want to delete this session record?" } } do %>
+                      form: { data: { turbo_stream: true } } do %>
           <% end %>
         <% end %>
       </div>
